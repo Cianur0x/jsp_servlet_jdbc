@@ -12,7 +12,17 @@ public abstract class AbstractDAOImpl {
 	protected static String schema;
 	protected static String username;
 	protected static String password;
-	
+
+	/*
+	*
+	*  Esto signifiaca que cuando la calse se vaya a
+	* cargar en el class path se ejecutara este bloque
+	* QUE ES LO QUE HACE
+	*        |
+	*        v
+	* irse al resources y leeremos los diferentes parametros de conexion en "database.properties"
+	*
+	* */
 	static {
 		Properties properties = new Properties();
 		try {
@@ -31,6 +41,7 @@ public abstract class AbstractDAOImpl {
 	
 	/**
 	 * Ejecuta un PreparedStatement de tipo insert.
+	 * ejecuta un ps de tiupo insert recupera la calve priamria autogenerada
 	 * @param ps de tipo insert
 	 * @return devuelve Optional de entero correspondiente al ID generado.
 	 * @throws SQLException

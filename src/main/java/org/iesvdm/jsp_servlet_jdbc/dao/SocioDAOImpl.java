@@ -20,9 +20,9 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
             conn = connectDB();
 
 
-            //1 alternativas comentadas:
-            //Ver también, AbstractDAOImpl.executeInsert ...
-            //Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se omite de la sentencia SQL INSERT siguiente.
+            // 1 alternativas comentadas:
+            // Ver también, AbstractDAOImpl.executeInsert ...
+            // Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se omite de la sentencia SQL INSERT siguiente.
             ps = conn.prepareStatement("INSERT INTO socio (nombre, estatura, edad, localidad) VALUES (?, ? , ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             int idx = 1;
@@ -39,9 +39,7 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
             if (rsGenKeys.next())
                 socio.setSocioId(rsGenKeys.getInt(1));
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) { // JAVA moderno
             e.printStackTrace();
         } finally {
             closeDb(conn, ps, rs);
@@ -76,9 +74,8 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
                 listSocio.add(socio);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+
+        } catch (SQLException | ClassNotFoundException e) { // JAVA moderno
             e.printStackTrace();
         } finally {
             closeDb(conn, s, rs);
@@ -112,6 +109,7 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
                 socio.setEdad(rs.getInt("edad"));
                 socio.setLocalidad(rs.getString("localidad"));
 
+                // SI lo enuentra
                 return Optional.of(socio);
             }
 
@@ -123,6 +121,7 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
             closeDb(conn, ps, rs);
         }
 
+        // No lo encuentra se decuelve Optional vacio
         return Optional.empty();
 
     }
@@ -143,15 +142,16 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
             ps.setInt(idx++, socio.getEstatura());
             ps.setInt(idx++, socio.getEdad());
             ps.setString(idx, socio.getLocalidad());
+            // Linea sospechosa
+            ps.setInt(idx++, socio.getSocioId());
 
+            // SIMPRE PARA INSERT, UPDATE O DELETE
             int rows = ps.executeUpdate();
 
             if (rows == 0)
                 System.out.println("Update de socio con 0 registros actualizados.");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             closeDb(conn, ps, rs);
@@ -178,9 +178,7 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
             if (rows == 0)
                 System.out.println("Delete de socio con 0 registros eliminados.");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             closeDb(conn, ps, rs);

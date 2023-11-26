@@ -1,7 +1,9 @@
 package org.iesvdm.jsp_servlet_jdbc.model;
 
 import java.util.Objects;
-
+/**
+ * POJO o BEAN que representa la tabla Socio
+ * */
 public class Socio {
 
     private int socioId;
