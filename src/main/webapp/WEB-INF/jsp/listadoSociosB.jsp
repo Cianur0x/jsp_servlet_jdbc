@@ -1,14 +1,14 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="org.iesvdm.jsp_servlet_jdbc.model.Socio" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.iesvdm.jsp_servlet_jdbc.model.Socio"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="org.iesvdm.jsp_servlet_jdbc.model.Socio" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Listado de Socios</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="estilos.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="estilos.css"/>
 </head>
 <body class="bg-light">
 <div class="container bg-white sticky-top">
@@ -27,10 +27,10 @@
 
 <div class="container bg-light">
     <%
-    //                                                          v----RECOGER listado DE SOCIO DEL request
-    List<Socio> listado = (List<Socio>) request.getAttribute("listado");
-    // FOR-EACH SOBRE LA COLECCIÓN DE listado DE SOCIO
-    for (Socio socio: listado) {
+        //                                                          v----RECOGER listado DE SOCIO DEL request
+        List<Socio> listado = (List<Socio>) request.getAttribute("listado");
+        // FOR-EACH SOBRE LA COLECCIÓN DE listado DE SOCIO
+        for (Socio socio : listado) {
     %>
     <div class="row mt-2 body">
         <div class="col-md-1 align-self-center"><%=socio.getSocioId() %>
@@ -45,18 +45,18 @@
         </div>
 
         <div class="col-md-2 align-self-center text-center">
-            <form method="get" action="borraSocio.jsp">
+            <form method="post" action="BorrarSociosServlet">
                 <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
-                <input class="btn btn-primary"  type="submit" value="Borrar">
+                <input class="btn btn-primary" type="submit" value="Borrar">
             </form>
         </div>
     </div>
-        <%
-      //v--- FIN DEL BUCLE FOR CON HTML INCRUSTADO
-    } // for
+    <%
+            //v--- FIN DEL BUCLE FOR CON HTML INCRUSTADO
+        } // for
     %>
 </div>
 
-<script src="js/bootstrap.bundle.js" ></script>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

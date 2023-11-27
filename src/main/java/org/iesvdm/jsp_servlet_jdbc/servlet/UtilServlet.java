@@ -56,4 +56,33 @@ public class UtilServlet {
         return Optional.empty();
 
     }
+
+    public static Optional<Socio> validaBorrar(HttpServletRequest request) {
+
+        //CÓDIGO DE VALIDACIÓN
+        boolean valida = true;
+        int socioID = -1;
+        String nombre = null;
+        int estatura = -1;
+        int edad = -1;
+        String localidad = null;
+        try {
+
+            Objects.requireNonNull(request.getParameter("codigo"));
+            if (request.getParameter("codigo").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
+            socioID = Integer.parseInt( request.getParameter("codigo"));
+
+
+            // Devuelve un optional de socio con los nuevos parametros de socio recogidos mediante request
+            return Optional.of(new Socio(socioID, nombre, estatura, edad, localidad));
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        //FIN CÓDIGO DE VALIDACIÓN
+        return Optional.empty();
+
+    }
+
 }

@@ -1,8 +1,11 @@
 package org.iesvdm.jsp_servlet_jdbc.servlet;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.iesvdm.jsp_servlet_jdbc.dao.SocioDAO;
 import org.iesvdm.jsp_servlet_jdbc.dao.SocioDAOImpl;
 import org.iesvdm.jsp_servlet_jdbc.model.Socio;
@@ -51,27 +54,22 @@ public class GrabarSociosServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
 
         /*
-         * siempre que hagamos un getRequestDispatcher debe materializarse en un
-         * fordward
-         * --------------------------------------------------------|
-         * V v---------v-----SE LE PASAN LOS OBJETOS request Y response PARA HACER
-         * EFECTIVA
+         * siempre que hagamos un getRequestDispatcher debe materializarse en un fordward
+         *             -------------------------------------------------------------|
+         *             V      v---------v-----SE LE PASAN LOS OBJETOS request Y response PARA HACER EFECTIVA
          */
         dispatcher.forward(request, response); // la redireccion interna en el servidor a una JSP o vista.
 
     }
 
     // MÉTODO PARA RUTAS POST /GrabarSociosServlet
-    // PARA LA RUTA POST /GrabarSociosServlet HAY 2 OPCIONES DE REDIRECCIÓN INTERNA
-    // A JSP
+    // PARA LA RUTA POST /GrabarSociosServlet HAY 2 OPCIONES DE REDIRECCIÓN INTERNA A JSP
     // 1a CASO DE QUE SE VALIDE CORRECTAMENTE --> pideNumeroSocio.jsp
-    // 2o CASO DE QUE NO SE VALIDE CORRECTAMENTE --> formularioSocio.jsp CON INFORME
-    // DE ERROR
+    // 2o CASO DE QUE NO SE VALIDE CORRECTAMENTE --> formularioSocio.jsp CON INFORME DE ERROR
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // A
-        // |
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //                                      A
+        //                                      |
         // fijarse en que estamos injectando un request
 
         RequestDispatcher dispatcher = null;
@@ -79,7 +77,7 @@ public class GrabarSociosServlet extends HttpServlet {
         // CÓDIGO DE VALIDACIÓN ENCAPSULADO EN UN MÉTODO DE UTILERÍA
         // SI OK ==> OPTIONAL CON SOCIO |
         // SI FAIL ==> EMPTY OPTIONAL |
-        // V
+        //                        V
         Optional<Socio> optionalSocio = UtilServlet.validaGrabar(request);
 
         // SI OPTIONAL CON SOCIO PRESENTE <--> VALIDA OK

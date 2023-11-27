@@ -10,12 +10,11 @@
 <body>
 <%
 
-
     if (valida) {
 
         Connection conn = null;
         PreparedStatement ps = null;
-// 	ResultSet rs = null;
+        // 	ResultSet rs = null;
 
         try {
 
@@ -70,7 +69,7 @@
         }
 
         out.println("Socio dado de alta.");
-} else {
+    } else {
         out.println("Error de validación!");
     }
 %>

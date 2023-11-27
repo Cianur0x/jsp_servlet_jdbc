@@ -21,17 +21,16 @@
 
         // se recupera desde el request el atributo listado y como son objetos es necesario el CASTEO
         // es mejor visualizarlo con el codigo html y el acceso directo a las expresiones
-
-//                                                              v----RECOGER listado DE SOCIO DEL request --%>
+        //                                      v----RECOGER listado DE SOCIO DEL request --%>
     <%--      FOR-EACH SOBRE LA COLECCIÓN DE listado DE SOCIO --%>
     <%
         List<Socio> listado = (List<Socio>) request.getAttribute("listado");
 
-        for(Socio socio: listado) {
+        for (Socio socio : listado) {
     %>
 
-      <tr>
-<%--           v--- EXPRESIÓN ACCEDIENDO A LOS VALORES DE SOCIO--%>
+    <tr>
+        <%--           v--- EXPRESIÓN ACCEDIENDO A LOS VALORES DE SOCIO--%>
         <td><%=socio.getSocioId() %>
         </td>
         <td><%=socio.getNombre() %>
@@ -43,17 +42,18 @@
         <td><%= socio.getLocalidad()%>
         </td>
 
-      <td>
-      <form method="get" action="borraSocio.jsp">
-        <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
-        <input type="submit" value="Borrar">
-      </form>
-      </td></tr>
+        <td>
+            <form method="get" action="borraSocio.jsp">
+                <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
+                <input type="submit" value="Borrar">
+            </form>
+        </td>
+    </tr>
 
     <%--    v--- FIN DEL BUCLE FOR CON HTML INCRUSTADO--%>
     <%
-      } // for
-     %>
-    </table>
-  </body>
+        } // for
+    %>
+</table>
+</body>
 </html>
