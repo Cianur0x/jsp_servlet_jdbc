@@ -17,17 +17,19 @@
         <th>Edad</th>
         <th>Localidad</th>
     </tr>
-    <%
+    <%--
 
         // se recupera desde el request el atributo listado y como son objetos es necesario el CASTEO
         // es mejor visualizarlo con el codigo html y el acceso directo a las expresiones
 
 //                                                              v----RECOGER listado DE SOCIO DEL request --%>
+    <%--      FOR-EACH SOBRE LA COLECCIÓN DE listado DE SOCIO --%>
+    <%
         List<Socio> listado = (List<Socio>) request.getAttribute("listado");
 
-//      FOR-EACH SOBRE LA COLECCIÓN DE listado DE SOCIO--%>
         for(Socio socio: listado) {
-          %>
+    %>
+
       <tr>
 <%--           v--- EXPRESIÓN ACCEDIENDO A LOS VALORES DE SOCIO--%>
         <td><%=socio.getSocioId() %>
@@ -47,9 +49,9 @@
         <input type="submit" value="Borrar">
       </form>
       </td></tr>
-    <%
 
-<%--    v--- FIN DEL BUCLE FOR CON HTML INCRUSTADO--%>
+    <%--    v--- FIN DEL BUCLE FOR CON HTML INCRUSTADO--%>
+    <%
       } // for
      %>
     </table>
