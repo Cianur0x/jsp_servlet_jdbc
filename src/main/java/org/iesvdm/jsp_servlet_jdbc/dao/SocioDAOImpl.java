@@ -19,11 +19,12 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
         try {
             conn = connectDB();
 
-
             // 1 alternativas comentadas:
             // Ver también, AbstractDAOImpl.executeInsert ...
-            // Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se omite de la sentencia SQL INSERT siguiente.
-            ps = conn.prepareStatement("INSERT INTO socio (nombre, estatura, edad, localidad) VALUES (?, ? , ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            // Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se
+            // omite de la sentencia SQL INSERT siguiente.
+            ps = conn.prepareStatement("INSERT INTO socio (nombre, estatura, edad, localidad) VALUES (?, ? , ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
 
             int idx = 1;
             ps.setString(idx++, socio.getNombre());
@@ -74,7 +75,6 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
                 listSocio.add(socio);
             }
 
-
         } catch (SQLException | ClassNotFoundException e) { // JAVA moderno
             e.printStackTrace();
         } finally {
@@ -113,9 +113,7 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
                 return Optional.of(socio);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             closeDb(conn, ps, rs);
@@ -136,7 +134,8 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
         try {
             conn = connectDB();
 
-            ps = conn.prepareStatement("UPDATE socio SET nombre = ?, estatura = ?, edad = ?, localidad = ?  WHERE socioID = ?");
+            ps = conn.prepareStatement(
+                    "UPDATE socio SET nombre = ?, estatura = ?, edad = ?, localidad = ?  WHERE socioID = ?");
             int idx = 1;
             ps.setString(idx++, socio.getNombre());
             ps.setInt(idx++, socio.getEstatura());

@@ -16,7 +16,9 @@
     </form>
 
   <%
+//                                v---- RECOGER MENSAJE DE ERROR DEL ÁMBITO request
     String error = (String) request.getAttribute("error");
+//           v---- SI ESTÁ PRESENTE INFORMAR DEL ERROR
     if (error != null) {
       %>
       <div style="color: red"><%=error%></div>

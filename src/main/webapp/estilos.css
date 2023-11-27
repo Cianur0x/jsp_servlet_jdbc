@@ -56,3 +56,32 @@ tbody td{
     color:#666;
     text-shadow:1px 1px 1px #fff;
 }
+
+
+/* For small screen */
+.row.body:nth-child(even){
+    background-color: #dcdcdc;
+}
+.row.body:nth-child(odd){
+    background-color: #aaaaaa;
+}
+/*For medium screen
+@media (min-width: 768px) {
+    .row.body:nth-child(4n), .row:nth-child(4n-1) {
+        background: #dcdcdc;
+    }
+    .row.body:nth-child(4n-2), .row:nth-child(4n-3) {
+        background: #aaaaaa;
+    }
+}
+*/
+/*For large screen
+@media (min-width: 992px) {
+    .row.body:nth-child(6n), .row:nth-child(6n-1), .row:nth-child(6n-2) {
+        background: #dcdcdc;
+    }
+    .row.body:nth-child(6n-3), .row:nth-child(6n-4), .row:nth-child(6n-5) {
+        background: #aaaaaa;
+    }
+ }
+*/

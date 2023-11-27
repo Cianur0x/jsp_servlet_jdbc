@@ -1,9 +1,10 @@
 package org.iesvdm.jsp_servlet_jdbc.model;
 
 import java.util.Objects;
+
 /**
  * POJO o BEAN que representa la tabla Socio
- * */
+ */
 public class Socio {
 
     private int socioId;
@@ -65,8 +66,10 @@ public class Socio {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Socio socio = (Socio) o;
         return socioId == socio.socioId;
     }
