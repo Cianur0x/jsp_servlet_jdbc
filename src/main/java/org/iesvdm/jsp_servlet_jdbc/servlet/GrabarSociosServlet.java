@@ -62,10 +62,6 @@ public class GrabarSociosServlet extends HttpServlet {
 
     }
 
-    // MÉTODO PARA RUTAS POST /GrabarSociosServlet
-    // PARA LA RUTA POST /GrabarSociosServlet HAY 2 OPCIONES DE REDIRECCIÓN INTERNA A JSP
-    // 1a CASO DE QUE SE VALIDE CORRECTAMENTE --> pideNumeroSocio.jsp
-    // 2o CASO DE QUE NO SE VALIDE CORRECTAMENTE --> formularioSocio.jsp CON INFORME DE ERROR
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //                                      A
@@ -73,44 +69,22 @@ public class GrabarSociosServlet extends HttpServlet {
         // fijarse en que estamos injectando un request
 
         RequestDispatcher dispatcher = null;
-        // Aqui se crea el socio
-        // CÓDIGO DE VALIDACIÓN ENCAPSULADO EN UN MÉTODO DE UTILERÍA
-        // SI OK ==> OPTIONAL CON SOCIO |
-        // SI FAIL ==> EMPTY OPTIONAL |
-        //                        V
-        Optional<Socio> optionalSocio = UtilServlet.validaGrabar(request);
+        // Aqui se verifica si los datos del socio están correctos
+        Optional<Socio> optionalSocio = UtilServlet.validaEditar(request);
 
         // SI OPTIONAL CON SOCIO PRESENTE <--> VALIDA OK
         if (optionalSocio.isPresent()) {
 
-            // ACCEDO AL VALOR DE OPTIONAL DE SOCIO
+
             Socio socio = optionalSocio.get();
 
-            // PERSITO EL SOCIO NUEVO EN BBDD
             this.socioDAO.create(socio);
 
-            // prepara un atributo de listado de socio
-            // CARGO TODO EL LISTADO DE SOCIOS DE BBDD CON EL NUEVO
             List<Socio> listado = this.socioDAO.getAll();
 
-            // PREPARO ATRIBUTO EN EL ÁMBITO DE REQUEST PARA PASAR A JSP EL LISTADO
-            // A RENDERIZAR. UTILIZO EL ÁMBITO DEL REQUEST DADO QUE EN EL FORWARD A
-            // LA JSP SIGUE "VIVO" Y NO NECESITO ACCEDER AL ÁMBITO DE SESIÓN QUE REQUERIRÍA
-            // DE UN CONTROL DE BORRADO DEL ATRIBUTO DESPUÉS DE SU USO.
-            // EN request HAY UN Map<String, Object> DONDE PREPARO EL ATRIBUTO PARA LA VISTA
-            // JSP
-            // |
-            // V
             request.setAttribute("listado", listado);
-            /*
-             * cuando yo haga un request dispacher hacia una pagina
-             * en esa página el request original sigue estando vivo
-             */
 
-            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A
-            // pideNumeroSocio.jsp
-            // |
-            // V
+            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A listadoSociosB.jsp
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/listadoSociosB.jsp");
             // en caso de que no valide, se informa que hay error de validación simple
             // vuelvo al formualriosocio atraves de redireccion interna
@@ -122,18 +96,9 @@ public class GrabarSociosServlet extends HttpServlet {
             // V
             request.setAttribute("error", "Error de validación!");
 
-            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A
-            // formularioSocio.jsp
-            // |
-            // V
+            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A  formularioSocio.jsp
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
         }
-
-        // request se sigue redirigiendo en el fordward y va a estar disponible en mi
-        // pideNumerSocio
-        // ventaja de psarlo por el request es que una vez que la peticion se termine el
-        // objeto se borra utomaticamente
-        // no hace flata hacer un remove
 
         // SIEMPRE PARA HACER EFECTIVA UNA REDIRECCIÓN INTERNA DEL SERVIDOR
         // TENEMOS QUE HACER FORWARD CON LOS OBJETOS request Y response
