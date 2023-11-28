@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="739e422a-ce2f-4c56-a118-8ca65f865cf4" name="Changes" comment="workspace config 🤨" />
+    <list default="true" id="739e422a-ce2f-4c56-a118-8ca65f865cf4" name="Changes" comment="Más dinamismos jquery">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/listadoSociosB.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/listadoSociosB.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/estilos.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +26,8 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -87,12 +93,12 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\usuario\IdeaProjects\borrar\jsp_servlet_jdbc\src\main\webapp\WEB-INF\jsp" />
@@ -304,47 +310,39 @@
       <option name="project" value="LOCAL" />
       <updated>1701110693526</updated>
     </task>
-    <task id="LOCAL-00012" summary="added boostrap 😀">
+    <task id="LOCAL-00012" summary="Más estilos bootstrap">
       <option name="closed" value="true" />
-      <created>1701126114971</created>
+      <created>1701111157874</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1701126114971</updated>
+      <updated>1701111157874</updated>
     </task>
-    <task id="LOCAL-00013" summary="config pideNumeroSocio.jsp">
+    <task id="LOCAL-00013" summary="Más dinamismos jquery">
       <option name="closed" value="true" />
-      <created>1701126481968</created>
+      <created>1701185501216</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1701126481968</updated>
+      <updated>1701185501216</updated>
     </task>
-    <task id="LOCAL-00014" summary="formatted files &amp; add GrabarSociosServlet">
+    <task id="LOCAL-00014" summary="Más dinamismos jquery">
       <option name="closed" value="true" />
-      <created>1701129072342</created>
+      <created>1701185585770</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1701129072342</updated>
+      <updated>1701185585770</updated>
     </task>
-    <task id="LOCAL-00015" summary="add formularioEditarSocio.jsp &amp; EditarSociosServlet 🤨">
+    <task id="LOCAL-00015" summary="Más dinamismos jquery">
       <option name="closed" value="true" />
-      <created>1701153615587</created>
+      <created>1701185679202</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1701153615587</updated>
+      <updated>1701185679202</updated>
     </task>
-    <task id="LOCAL-00016" summary="workspace config 🤨">
-      <option name="closed" value="true" />
-      <created>1701195092992</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1701195092992</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,12 +364,8 @@
     <MESSAGE value="Comentarios explicativos en servlet" />
     <MESSAGE value="Se añade la posibilidad de maquetar con bootstrap" />
     <MESSAGE value="Más estilos bootstrap" />
-    <MESSAGE value="added boostrap " />
-    <MESSAGE value="config pideNumeroSocio.jsp" />
-    <MESSAGE value="formatted files &amp; add GrabarSociosServlet" />
-    <MESSAGE value="add formularioEditarSocio.jsp &amp; EditarSociosServlet " />
-    <MESSAGE value="workspace config " />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace config " />
+    <MESSAGE value="Más dinamismos jquery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Más dinamismos jquery" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -381,7 +375,16 @@
           <line>86</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/iesvdm/jsp_servlet_jdbc/servlet/GrabarSociosServlet.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

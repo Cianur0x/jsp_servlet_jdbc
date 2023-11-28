@@ -84,7 +84,13 @@ public class GrabarSociosServlet extends HttpServlet {
 
             request.setAttribute("listado", listado);
 
-            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A listadoSociosB.jsp
+            //ESTABLEZCO EL ATRIBUTO DE newSocioID EN EL ÁMBITO DE REQUEST
+            //PARA LANZAR UN MODAL Y UN EFECTO SCROLL EN LA VISTA JSP
+            request.setAttribute("newSocioID", socio.getSocioId() );
+
+            //POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A pideNumeroSocio.jsp
+            //                                                                      |
+            //                                                                      V
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/listadoSociosB.jsp");
             // en caso de que no valide, se informa que hay error de validación simple
             // vuelvo al formualriosocio atraves de redireccion interna

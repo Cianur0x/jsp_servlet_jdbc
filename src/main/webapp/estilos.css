@@ -57,6 +57,7 @@ tbody td{
     text-shadow:1px 1px 1px #fff;
 }
 
+.highlight { background-color:yellow !important; }
 
 /* For small screen */
 .row.body:nth-child(even){
