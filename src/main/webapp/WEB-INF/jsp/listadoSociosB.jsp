@@ -24,11 +24,11 @@
     </div>
     <div class="row">
         <div class="col-md-1 h3">ID</div>
-        <div class="col-md-4 h3">Nombre</div>
+        <div class="col-md-3 h3">Nombre</div>
         <div class="col-md-1 h3">Edad</div>
         <div class="col-md-1 h3">Estatura</div>
         <div class="col-md-3 h3">Localidad</div>
-        <div class="col-md-2 h3 text-center">Operación</div>
+        <div class="col-md-1 h3 text-center">Operación</div>
     </div>
 </div>
 
@@ -42,7 +42,7 @@
     <div id="<%=socio.getSocioId()%>" class="row mt-2 body">
         <div class="col-md-1 align-self-center"><%=socio.getSocioId() %>
         </div>
-        <div class="col-md-4 align-self-center"><%=socio.getNombre() %>
+        <div class="col-md-3 align-self-center"><%=socio.getNombre() %>
         </div>
         <div class="col-md-1 align-self-center"><%=socio.getEdad() %>
         </div>
@@ -51,10 +51,17 @@
         <div class="col-md-3 align-self-center"><%=socio.getLocalidad()%>
         </div>
 
-        <div class="col-md-2 align-self-center text-center">
+        <div class="col-md-1 align-self-center text-center">
             <form method="post" action="BorrarSociosServlet">
                 <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
                 <input class="btn btn-primary" type="submit" value="Borrar">
+            </form>
+        </div>
+
+        <div class="col-md-1 align-self-center text-center">
+            <form method="post" action="RecibeCodigoServlet">
+                <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
+                <input class="btn btn-primary" type="submit" value="Editar">
             </form>
         </div>
     </div>

@@ -94,9 +94,10 @@ public class UtilServlet {
         int edad = -1;
         String localidad = null;
         try {
-            socioID = Integer.parseInt(request.getParameter("socioCod"));
+            socioID = Integer.parseInt(request.getParameter("codigo"));
 
             Objects.requireNonNull(request.getParameter("nombre"));
+            // TODO parece que aplica directamente el servlet, recibe el codigo PERO no recibe los parámetros, tal vez si le pasamos lo sparamtros directamente? idk
 
             if (request.getParameter("nombre").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
             nombre = request.getParameter("nombre");

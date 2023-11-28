@@ -28,7 +28,7 @@ public class EditarSociosServlet extends HttpServlet {
          * directamente, solo através de Servlet usando un getRequestDispatcher
          */
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioEditarSocio.jsp");
 
         dispatcher.forward(request, response); // la redireccion interna en el servidor a una JSP o vista.
 
@@ -43,7 +43,7 @@ public class EditarSociosServlet extends HttpServlet {
         RequestDispatcher dispatcher = null;
         // Aqui se crea el socio
 
-        Optional<Socio> optionalSocio = UtilServlet.validaGrabar(request);
+        Optional<Socio> optionalSocio = UtilServlet.validaEditar(request);
 
         // SI OPTIONAL CON SOCIO PRESENTE <--> VALIDA OK
         if (optionalSocio.isPresent()) {

@@ -70,7 +70,7 @@ public class GrabarSociosServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = null;
         // Aqui se verifica si los datos del socio están correctos
-        Optional<Socio> optionalSocio = UtilServlet.validaEditar(request);
+        Optional<Socio> optionalSocio = UtilServlet.validaGrabar(request);
 
         // SI OPTIONAL CON SOCIO PRESENTE <--> VALIDA OK
         if (optionalSocio.isPresent()) {
