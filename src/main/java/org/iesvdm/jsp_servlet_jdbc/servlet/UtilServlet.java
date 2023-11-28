@@ -123,4 +123,23 @@ public class UtilServlet {
         return Optional.empty();
 
     }
+
+    public static Integer validaIDSocio(HttpServletRequest request) {
+
+        //CÓDIGO DE VALIDACIÓN
+        int socioID = -1;
+        try {
+            socioID = Integer.parseInt(request.getParameter("codigo"));
+
+
+            return socioID;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        //FIN CÓDIGO DE VALIDACIÓN
+        return socioID;
+
+    }
 }

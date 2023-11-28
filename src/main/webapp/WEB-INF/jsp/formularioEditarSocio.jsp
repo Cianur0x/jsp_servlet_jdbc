@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="estilos.css"/>
 </head>
 <body class="bg-light">
+<%  Integer codigo = (Integer)request.getAttribute("socioAEditar");%>
+<h1><%=codigo%></h1>
 <div class="container bg-white">
     <div class="row border-bottom">
         <div class="col-12 h2">Introduzca los datos a modificar</div>
@@ -37,14 +39,8 @@
             <div class="col-md-6 align-self-center">Localidad</div>
             <div class="col-md-6 align-self-center"><input type="text" name="localidad"/></div>
         </div>
-        <div class="row mt-2">
-            <div class="col-md-6">
-                &nbsp;
-            </div>
-            <div class="col-md-6 align-self-center">
-                <input class="btn btn-primary" type="submit" value="Aceptar">
-            </div>
-        </div>
+        <input type="hidden" name="codigo" value="<%=codigo%>"/>
+        <input class="btn btn-primary" type="submit" value="Editar">
     </form>
     <%
         //                          v---- RECOGER MENSAJE DE ERROR DEL ÁMBITO request

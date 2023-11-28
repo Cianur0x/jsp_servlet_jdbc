@@ -60,7 +60,7 @@
 
         <div class="col-md-1 align-self-center text-center">
             <form method="post" action="RecibeCodigoServlet">
-                <input type="hidden" name="codigo" value="<%=socio.getSocioId() %>"/>
+                <input type="hidden" name="codigo" value="<%=socio.getSocioId()%>"/>
                 <input class="btn btn-primary" type="submit" value="Editar">
             </form>
         </div>

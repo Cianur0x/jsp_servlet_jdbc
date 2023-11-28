@@ -134,14 +134,12 @@ public class SocioDAOImpl extends AbstractDAOImpl implements SocioDAO {
         try {
             conn = connectDB();
 
-            ps = conn.prepareStatement(
-                    "UPDATE socio SET nombre = ?, estatura = ?, edad = ?, localidad = ?  WHERE socioID = ?");
+            ps = conn.prepareStatement("UPDATE socio SET nombre = ?, estatura = ?, edad = ?, localidad = ?  WHERE socioID = ?");
             int idx = 1;
             ps.setString(idx++, socio.getNombre());
             ps.setInt(idx++, socio.getEstatura());
             ps.setInt(idx++, socio.getEdad());
-            ps.setString(idx, socio.getLocalidad());
-            // Linea sospechosa
+            ps.setString(idx++, socio.getLocalidad());
             ps.setInt(idx++, socio.getSocioId());
 
             // SIMPRE PARA INSERT, UPDATE O DELETE

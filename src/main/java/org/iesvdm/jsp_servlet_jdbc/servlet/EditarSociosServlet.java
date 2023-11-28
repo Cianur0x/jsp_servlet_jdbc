@@ -20,13 +20,7 @@ public class EditarSociosServlet extends HttpServlet {
     private SocioDAO socioDAO = new SocioDAOImpl();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        /*
-         * redireccion interna en el servidor
-         * OJO ruta JSP ha cambiado y esta dentreo de /WEB-INF/ no es accesible
-         * directamente, solo através de Servlet usando un getRequestDispatcher
-         */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioEditarSocio.jsp");
 
@@ -51,8 +45,9 @@ public class EditarSociosServlet extends HttpServlet {
             // ACCEDO AL VALOR DE OPTIONAL DE SOCIO
             Socio socio = optionalSocio.get();
 
+
             // PERSITO EL SOCIO NUEVO EN BBDD
-            this.socioDAO.update(socio);
+             this.socioDAO.update(socio);
 
             // prepara un atributo de listado de socio
             // CARGO TODO EL LISTADO DE SOCIOS DE BBDD CON EL NUEVO
@@ -77,7 +72,7 @@ public class EditarSociosServlet extends HttpServlet {
             // PREPARO MENSAJE DE ERROR EN EL ÁMBITO DEL REQUEST PARA LA VISTA JSP
             // |
             // V
-            request.setAttribute("error", "Error de validación!");
+            request.setAttribute("error", "Error de validación en Editar!");
 
             // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A
             // formularioSocio.jsp
