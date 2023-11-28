@@ -22,10 +22,6 @@
 <div class="container bg-light">
     <form method="post" action="EditarSociosServlet">
         <div class="row body mt-2">
-            <div class="col-md-6 align-self-center">Código Socio</div>
-            <div class="col-md-6 align-self-center"><input type="text" name="socioCod"/></div>
-        </div>
-        <div class="row body mt-2">
             <div class="col-md-6 align-self-center">Nombre</div>
             <div class="col-md-6 align-self-center"><input type="text" name="nombre"/></div>
         </div>
