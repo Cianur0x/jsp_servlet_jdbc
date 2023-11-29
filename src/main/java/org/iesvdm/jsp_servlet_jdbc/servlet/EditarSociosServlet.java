@@ -21,10 +21,35 @@ public class EditarSociosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = null;
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioEditarSocio.jsp");
+        Integer socioABuscar = UtilServlet.validaIDSocio(request);
 
-        dispatcher.forward(request, response); // la redireccion interna en el servidor a una JSP o vista.
+        // SI OPTIONAL CON SOCIO PRESENTE <--> VALIDA OK
+        if (socioABuscar != -1) {
+
+            Optional<Socio> findSocio = this.socioDAO.find(socioABuscar);
+
+            findSocio.ifPresent(socio -> request.setAttribute("socioAEditar", socio));
+
+            dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioEditarSocio.jsp");
+            // en caso de que no valide, se informa que hay error de validación simple
+            // vuelvo al formualriosocio atraves de redireccion interna
+        } else {
+
+            // El OPTIONAL ESTÁ VACÍO (EMPTY)
+            // PREPARO MENSAJE DE ERROR EN EL ÁMBITO DEL REQUEST PARA LA VISTA JSP
+            // |
+            // V
+            request.setAttribute("error", "Error de validación!");
+
+            // POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A  formularioSocio.jsp
+            dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
+        }
+
+        // SIEMPRE PARA HACER EFECTIVA UNA REDIRECCIÓN INTERNA DEL SERVIDOR
+        // TENEMOS QUE HACER FORWARD CON LOS OBJETOS request Y response
+        dispatcher.forward(request, response);
 
     }
 

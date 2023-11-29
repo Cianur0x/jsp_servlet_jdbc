@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.iesvdm.jsp_servlet_jdbc.model.Socio" %><%--
   Created by IntelliJ IDEA.
   User: pika_
   Date: 28/11/2023
@@ -14,8 +14,11 @@
     <link rel="stylesheet" type="text/css" href="estilos.css"/>
 </head>
 <body class="bg-light">
-<%  Integer codigo = (Integer)request.getAttribute("socioAEditar");%>
-<h1><%=codigo%></h1>
+<%  Socio socioAEdit = (Socio)request.getAttribute("socioAEditar");
+    if (socioAEdit != null) { // guarda extra
+
+    %>
+<h1><%=socioAEdit%></h1>
 <div class="container bg-white">
     <div class="row border-bottom">
         <div class="col-12 h2">Introduzca los datos a modificar</div>
@@ -24,25 +27,29 @@
 <div class="container bg-light">
     <form method="post" action="EditarSociosServlet">
         <div class="row body mt-2">
+            <div class="col-md-6 align-self-center">Código</div>
+            <div class="col-md-6 align-self-center"><input type="text" name="codigo" value="<%=socioAEdit.getSocioId()%>" readonly /></div>
+        </div>
+        <div class="row body mt-2">
             <div class="col-md-6 align-self-center">Nombre</div>
-            <div class="col-md-6 align-self-center"><input type="text" name="nombre"/></div>
+            <div class="col-md-6 align-self-center"><input type="text" name="nombre" value="<%=socioAEdit.getNombre()%>" /></div>
         </div>
         <div class="row body mt-2">
             <div class="col-md-6 align-self-center">Estatura</div>
-            <div class="col-md-6 align-self-center"><input type="text" name="estatura"/></div>
+            <div class="col-md-6 align-self-center"><input type="text" name="estatura" value="<%=socioAEdit.getEstatura()%>" /></div>
         </div>
         <div class="row body mt-2">
             <div class="col-md-6 align-self-center">Edad</div>
-            <div class="col-md-6 align-self-center"><input type="text" name="edad"/></div>
+            <div class="col-md-6 align-self-center"><input type="text" name="edad" value="<%=socioAEdit.getEdad()%>" /></div>
         </div>
         <div class="row body mt-2">
             <div class="col-md-6 align-self-center">Localidad</div>
-            <div class="col-md-6 align-self-center"><input type="text" name="localidad"/></div>
+            <div class="col-md-6 align-self-center"><input type="text" name="localidad" value="<%=socioAEdit.getLocalidad()%>" /></div>
         </div>
-        <input type="hidden" name="codigo" value="<%=codigo%>"/>
         <input class="btn btn-primary" type="submit" value="Editar">
     </form>
     <%
+        }
         //                          v---- RECOGER MENSAJE DE ERROR DEL ÁMBITO request
         String error = (String) request.getAttribute("error");
         //     v---- SI ESTÁ PRESENTE INFORMAR DEL ERROR

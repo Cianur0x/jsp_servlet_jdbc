@@ -85,43 +85,19 @@ public class UtilServlet {
 
     }
     public static Optional<Socio> validaEditar(HttpServletRequest request) {
+        Optional<Socio> optSocio = UtilServlet.validaGrabar(request);
+        if (optSocio.isPresent()) {
+            Socio socio = optSocio.get();
+            try {
+                socio.setSocioId(Integer.parseInt(request.getParameter("codigo")));
+                return optSocio;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        //CÓDIGO DE VALIDACIÓN
-        boolean valida = true;
-        int socioID = -1;
-        String nombre = null;
-        int estatura = -1;
-        int edad = -1;
-        String localidad = null;
-        try {
-            socioID = Integer.parseInt(request.getParameter("codigo"));
-
-            Objects.requireNonNull(request.getParameter("nombre"));
-            // TODO parece que aplica directamente el servlet, recibe el codigo PERO no recibe los parámetros, tal vez si le pasamos lo sparamtros directamente? idk
-
-            if (request.getParameter("nombre").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
-            nombre = request.getParameter("nombre");
-
-
-            estatura = Integer.parseInt(request.getParameter("estatura"));
-
-            edad = Integer.parseInt(request.getParameter("edad"));
-
-            Objects.requireNonNull(request.getParameter("localidad"));
-
-            if (request.getParameter("localidad").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
-            localidad = request.getParameter("localidad");
-
-            // Devuelve un optional de socio con los nuevos parametros de socio recogidos mediante request
-            return Optional.of(new Socio(socioID, nombre, estatura, edad, localidad));
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
 
-        //FIN CÓDIGO DE VALIDACIÓN
         return Optional.empty();
-
     }
 
     public static Integer validaIDSocio(HttpServletRequest request) {
@@ -130,7 +106,6 @@ public class UtilServlet {
         int socioID = -1;
         try {
             socioID = Integer.parseInt(request.getParameter("codigo"));
-
 
             return socioID;
 

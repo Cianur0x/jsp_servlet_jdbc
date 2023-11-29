@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-1 align-self-center text-center">
-            <form method="post" action="RecibeCodigoServlet">
+            <form method="get" action="EditarSociosServlet">
                 <input type="hidden" name="codigo" value="<%=socio.getSocioId()%>"/>
                 <input class="btn btn-primary" type="submit" value="Editar">
             </form>

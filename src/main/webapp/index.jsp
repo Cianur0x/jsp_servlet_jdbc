@@ -7,14 +7,10 @@
 <body>
 <h1><%= "Hello World!" %>
 </h1>
-<br/>
 
-<a href="WEB-INF/jsp/listadoSocios.jsp">Listado de Socios</a>
 <br>
 <a href="GrabarSociosServlet">Fomulario de Socio Nuevo</a>
 <br>
-<a href="EditarSociosServlet">Fomulario de Editar Socio</a>
-<br>
-<a href="WEB-INF/jsp/pideNumeroSocio.jsp">Listado de Socios</a>
+<a href="ListadoSociosServlet">Listado de Socios</a>
 </body>
 </html>
