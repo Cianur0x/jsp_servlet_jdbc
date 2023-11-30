@@ -14,26 +14,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-// HTML5 SOLO SOPORTA GET Y POST, solo tratamos get y post
-
-// API REST UTILIZANDO CODIGO DE CLEINTE JS: GET, POST, PUT, DELETE, (PATCH menos utilizado)
-//PLANTILLA DE CÓDIGO PARA SERVLETs EN INTELLIJ
-//https://www.jetbrains.com/help/idea/creating-and-configuring-web-application-elements.html
-
-//1A APROX. PATRÓN MVC -> M(dao, model y bbdd), V(jsp) & C(servlet)
-
 //                      v--NOMBRE DEL SERVLET           v--RUTAS QUE ATIENDE, PUEDE SER UN ARRAY {"/GrabarSociosServlet", "/grabar-socio"}
 @WebServlet(name = "GrabarSociosServlet", value = "/GrabarSociosServlet")
 public class GrabarSociosServlet extends HttpServlet {
 
     // EL SERVLET TIENE INSTANCIADO EL DAO PARA ACCESO A BBDD A LA TABLA SOCIO
-    // |
-    // V
     private SocioDAO socioDAO = new SocioDAOImpl();
 
-    // HTML5 SÓLO SOPORTA GET Y POST
-    // FRENTE A API REST UTLIZANDO CÓDIGO DE CLIENTE JS HTTP: GET, POST, PUT,
-    // DELETE, PATCH
 
     // MÉTODO PARA RUTAS GET /GrabarSociosServlet
     // PARA LA RUTA /GrabarSociosServlet VA A MOSTRAR LA JSP DE formularioSocio.jsp
@@ -41,16 +28,11 @@ public class GrabarSociosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         /*
-         * redireccion interna en el servidor
-         * OJO ruta JSP ha cambiado y esta dentreo de /WEB-INF/ no es accesible
-         * directamente, solo através de Servlet
-         * usando un getRequestDispatcher
+         * redirección interna en el servidor
+         * OJO ruta JSP ha cambiado y esta dentro de /WEB-INF/ no es accesible directamente,
+         * solo através de Servlet usando un getRequestDispatcher
          */
 
-        // SE TRATA DE UNA REDIRECCIÓN INTERNA EN EL SERVIDOR
-        // FIJÉMONOS QUE LA RUTA DE LA JSP HA CAMBIADO A DENTRO DE /WEB-INF/
-        // POR LO TANTO NO ES ACCESIBLE DIRECTAMENTE, SÓLO A TRAVÉS DE SERVLET
-        // MEDIANTE UN RequestDispatcher ----------------v
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
 
         /*
@@ -64,11 +46,9 @@ public class GrabarSociosServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //                                      A
-        //                                      |
-        // fijarse en que estamos injectando un request
 
         RequestDispatcher dispatcher = null;
+
         // Aqui se verifica si los datos del socio están correctos
         Optional<Socio> optionalSocio = UtilServlet.validaGrabar(request);
 
@@ -88,7 +68,7 @@ public class GrabarSociosServlet extends HttpServlet {
             //PARA LANZAR UN MODAL Y UN EFECTO SCROLL EN LA VISTA JSP
             request.setAttribute("newSocioID", socio.getSocioId() );
 
-            //POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A pideNumeroSocio.jsp
+            //POR ÚLTIMO, REDIRECCIÓN INTERNA PARA LA URL /GrabarSocioServlet A listadoSociosB.jsp
             //                                                                      |
             //                                                                      V
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/listadoSociosB.jsp");
@@ -96,7 +76,7 @@ public class GrabarSociosServlet extends HttpServlet {
             // vuelvo al formualriosocio atraves de redireccion interna
         } else {
 
-            // El OPTIONAL ESTÁ VACÍO (EMPTY)
+            // El OPTIONAL  (EMPTY)
             // PREPARO MENSAJE DE ERROR EN EL ÁMBITO DEL REQUEST PARA LA VISTA JSP
             // |
             // V

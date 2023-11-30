@@ -7,9 +7,9 @@
 <html>
 <head>
     <title>Listado de Socios</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="estilos.css" />
-    <link rel="stylesheet" type="text/css" href="css/backtop.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="estilos.css"/>
+    <link rel="stylesheet" type="text/css" href="css/backtop.css"/>
 </head>
 <body class="bg-light">
 
@@ -20,7 +20,13 @@
 
 <div class="container bg-white sticky-top">
     <div class="row mb-2 border-bottom">
-        <div class="col-md-12 h1">Listado de Socios</div>
+        <div class="col-md-8 h1">Listado de Socios</div>
+        <div class="col-md-4 align-self-center">
+            <%----- Usamos método get para que solo rediriga a la página  ----%>
+            <form method="get" action="GrabarSociosServlet">
+                <input class="btn btn-primary" type="submit" value="Crear Socio">
+            </form>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-1 h3">ID</div>
@@ -75,7 +81,8 @@
     if (newSocioID != null) {
 %>
 
-<div class="modal fade" id="newSocioIDModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newSocioIDModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -94,11 +101,11 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/jquery.js" ></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
     //DINAMISMO CON JQUERY..
     //CUANDO SE CARGA EL DOM JQUERY EJECUTA SOBRE SELECTOR DE CAPA MODAL AL MODAL
-    $(function (){
+    $(function () {
         $('#newSocioIDModal').modal('show');
         $('#newSocioIDModal').on('click', 'button.close', function (eventObject) {
             $('#newSocioIDModal').modal('hide');
@@ -111,14 +118,14 @@
 
         //IMPLEMENTANDO UN BOTÓN backToTop
         let btn = $('#backToTop');
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             if ($(window).scrollTop() > 300) {
                 btn.addClass('show');
             } else {
                 btn.removeClass('show');
             }
         });
-        btn.on('click', function(e) {
+        btn.on('click', function (e) {
             e.preventDefault();
             $('html, body').animate({
                 scrollTop: 0
@@ -128,6 +135,6 @@
     });
 </script>
 <% } %>
-<script type="text/javascript" src="js/bootstrap.bundle.js" ></script>
+<script type="text/javascript" src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

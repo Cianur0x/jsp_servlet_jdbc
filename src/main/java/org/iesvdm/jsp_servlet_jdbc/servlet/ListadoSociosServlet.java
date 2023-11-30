@@ -16,6 +16,7 @@ import java.util.List;
 @WebServlet(name = "ListadoSociosServlet", value = "/ListadoSociosServlet")
 public class ListadoSociosServlet extends HttpServlet {
     private SocioDAO socioDAO = new SocioDAOImpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

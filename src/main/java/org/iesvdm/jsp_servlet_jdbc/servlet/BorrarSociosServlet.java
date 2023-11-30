@@ -36,7 +36,7 @@ public class BorrarSociosServlet extends HttpServlet {
             request.setAttribute("listado", listado);
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/listadoSociosB.jsp");
 
-        } else{
+        } else {
             request.setAttribute("error", "Error Socio no encontrado!");
             dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/formularioSocioB.jsp");
         }

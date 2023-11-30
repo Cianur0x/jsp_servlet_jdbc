@@ -22,7 +22,7 @@ public class UtilServlet {
             //             v---- LANZA NullPointerException SI EL PARÁMETRO ES NULL
             Objects.requireNonNull(request.getParameter("nombre"));
             //CONTRACT nonBlank..
-            //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TODO BLANCOS "    "
+            //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TO_DO BLANCOS "    "
             //          |                                EN EL CASO DE QUE SEA BLANCO LO RECIBIDO, LANZO UNA EXCEPCIÓN PARA INVALIDAR EL PROCESO DE VALIDACIÓN
             //          -------------------------v                      v---------------------------------------|
             if (request.getParameter("nombre").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
@@ -36,15 +36,16 @@ public class UtilServlet {
             //UTILIZO LOS CONTRACTS DE LA CLASE Objects PARA LA VALIDACIÓN
             //             v---- LANZA NullPointerException SI EL PARÁMETRO ES NULL
             Objects.requireNonNull(request.getParameter("localidad"));
+
             //CONTRACT nonBlank
-            //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TODO BLANCOS "    "
+            //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TO_DO BLANCOS "    "
             //          |                                EN EL CASO DE QUE SEA BLANCO LO RECIBIDO, LANZO UNA EXCEPCIÓN PARA INVALIDAR EL PROCESO DE VALIDACIÓN
             //          -------------------------v                      v---------------------------------------|
             if (request.getParameter("localidad").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
             localidad = request.getParameter("localidad");
 
             // Devuelve un optional de socio con los nuevos parametros de socio recogidos mediante request
-            // ¿socio ID es -1 xd?, no tiene relevancia es la primera creacion de ese siocio
+            // ¿socio ID es -1?, no tiene relevancia es la primera creación de ese socio
             return Optional.of(new Socio(-1, nombre, estatura, edad, localidad));
 
         } catch (Exception ex) {
@@ -72,7 +73,7 @@ public class UtilServlet {
             socioID = Integer.parseInt( request.getParameter("codigo"));
 
 
-            // Devuelve un optional de socio con los nuevos parametros de socio recogidos mediante request
+            // Devuelve un optional de socio, para comprobar que el ide que nos han pasado es correcto
             return Optional.of(new Socio(socioID, nombre, estatura, edad, localidad));
 
         } catch (Exception ex) {
@@ -84,10 +85,13 @@ public class UtilServlet {
 
     }
     public static Optional<Socio> validaEditar(HttpServletRequest request) {
+        // Se usa valida grabar para compribar los datos introducidos
         Optional<Socio> optSocio = UtilServlet.validaGrabar(request);
         if (optSocio.isPresent()) {
             Socio socio = optSocio.get();
             try {
+                // Se recoge el id, en caso de que el usuario haya podido cambiarlo
+                // y se setea al nuevo usuario
                 socio.setSocioId(Integer.parseInt(request.getParameter("codigo")));
                 return optSocio;
             } catch (Exception e) {
