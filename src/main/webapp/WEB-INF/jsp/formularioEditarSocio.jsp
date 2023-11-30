@@ -18,7 +18,6 @@
     if (socioAEdit != null) { // guarda extra
 
     %>
-<h1><%=socioAEdit%></h1>
 <div class="container bg-white">
     <div class="row border-bottom">
         <div class="col-12 h2">Introduzca los datos a modificar</div>

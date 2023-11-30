@@ -11,7 +11,6 @@ public class UtilServlet {
     public static Optional<Socio> validaGrabar(HttpServletRequest request) {
 
         //CÓDIGO DE VALIDACIÓN
-        boolean valida = true;
         // int socioID = -1;
         String nombre = null;
         int estatura = -1;
